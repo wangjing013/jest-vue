@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HelloWorld.vue 组件渲染正常 1`] = `
+<div class="hello">
+  <h1>new message2</h1>
+</div>
+`;

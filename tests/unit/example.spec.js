@@ -9,4 +9,11 @@ describe('HelloWorld.vue', () => {
     })
     expect(wrapper.text()).toMatch(msg)
   })
+  it('组件渲染正常', () => {
+    const msg = 'new message2'
+    const wrapper = shallowMount(HelloWorld, {
+      propsData: { msg }
+    })
+    expect(wrapper).toMatchSnapshot('')
+  })
 })
