@@ -4,7 +4,7 @@ exports[`header 样式添加快照 1`] = `
 <div class="header">
   <div class="content">
     TodoList
-    <input data="test-input" placeholder="请输入代办事项" class="input">
+    <input data-test="input" placeholder="请输入代办事项" class="input">
   </div>
 </div>
 `;
