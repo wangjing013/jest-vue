@@ -1,3 +1,3 @@
 export const findTestWarpper = (warpper, selector) => {
-  return warpper.find(`[data-test="${selector}"]`)
+  return warpper.findAll(`[data-test="${selector}"]`)
 }

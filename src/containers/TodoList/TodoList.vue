@@ -1,37 +1,30 @@
 <template>
   <div class="hello">
     <Header @add="addUndoItem" />
-    <div>
-      代办列表: <span>{{ undoCount }}</span>
-    </div>
-    <ul class="completed-list" data="test-completed-list">
-      <li v-for="(item, index) of undoList" :key="index">
-        {{ item }}
-      </li>
-    </ul>
+    <UndoList :list="undoList" @delete="handlerUndoItemDelete"></UndoList>
   </div>
 </template>
 
 <script>
 import Header from './components/Header'
+import UndoList from './components/UndoList'
 export default {
   name: 'TodoList',
   components: {
-    Header
+    Header,
+    UndoList
   },
   data() {
     return {
       undoList: []
     }
   },
-  computed: {
-    undoCount() {
-      return this.undoList.length
-    }
-  },
   methods: {
     addUndoItem(inputValue) {
       this.undoList.push(inputValue)
+    },
+    handlerUndoItemDelete(index) {
+      this.undoList.splice(index, 1)
     }
   }
 }
