@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`header 样式添加快照 1`] = `
+exports[`Header 组件 样式发生变化时,有提示 1`] = `
 <div class="header">
   <div class="content">
     TodoList

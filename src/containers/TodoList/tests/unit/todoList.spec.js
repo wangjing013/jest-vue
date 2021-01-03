@@ -6,27 +6,29 @@ beforeAll(() => {
   warpper = shallowMount(TodoList)
 })
 
-it('TodoList 代办事项默认为空', () => {
-  const undoList = warpper.vm.$data.undoList
-  expect(undoList).toEqual([])
-})
-it('TodoList 中 addUndoItem 被调用时, undoList 列表会增加一项', () => {
-  warpper.setData({
-    undoList: [1, 2, 3]
+describe('TodoList 组件', () => {
+  it('undoList 数组默认为空', () => {
+    const undoList = warpper.vm.$data.undoList
+    expect(undoList).toEqual([])
   })
-  warpper.vm.addUndoItem(4)
-  expect(warpper.vm.undoList).toEqual([1, 2, 3, 4])
-})
-
-it('TodoList 使用 undoList 组件时, 需要传入 list 参数', () => {
-  const undoList = warpper.findComponent(UndoList)
-  expect(undoList.props).toBeTruthy()
-})
-
-it('TodoList 中 handlerUndoItemDelete 被调用时, undoList 列表会减一项', () => {
-  warpper.setData({
-    undoList: [1, 2, 3]
+  it('addUndoItem 被调用时, undoList 列表会增加', () => {
+    warpper.setData({
+      undoList: [1, 2, 3]
+    })
+    warpper.vm.addUndoItem(4)
+    expect(warpper.vm.undoList).toEqual([1, 2, 3, 4])
   })
-  warpper.vm.handlerUndoItemDelete(1)
-  expect(warpper.vm.undoList).toEqual([1, 3])
+
+  it('使用 undoList 组件时, 需要传入 list props', () => {
+    const undoList = warpper.findComponent(UndoList)
+    expect(undoList.props).toBeTruthy()
+  })
+
+  it('当 handlerUndoItemDelete 被调用时, undoList 列表会减少', () => {
+    warpper.setData({
+      undoList: [1, 2, 3]
+    })
+    warpper.vm.handlerUndoItemDelete(1)
+    expect(warpper.vm.undoList).toEqual([1, 3])
+  })
 })

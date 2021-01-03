@@ -37,17 +37,20 @@ export default {
   background-color #333
   height 60px
   color #fff
-  text-align center
 }
 .content {
-  line-height 60px;
+  width 600px
+  margin: 0 auto
+  line-height 60px
 }
 .input {
   outline none
   border none
   height 32px;
   line-height 32px;
-  width 200px
+  width 400px
   padding 6px 12px;
+  float right
+  margin-top 14px
 }
 </style>
