@@ -6,6 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit --watch",
+    "test:cov": "vue-cli-service test:unit --coverage",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -44,7 +45,10 @@
       "parser": "babel-eslint"
     },
     "rules": {
-      "space-before-function-paren": ["error", "never"]
+      "space-before-function-paren": [
+        "error",
+        "never"
+      ]
     },
     "overrides": [
       {
@@ -64,7 +68,8 @@
     "not dead"
   ],
   "jest": {
-    "preset": "@vue/cli-plugin-unit-jest"
+    "preset": "@vue/cli-plugin-unit-jest",
+    "collectCoverageFrom": ["**/*.{js,vue}", "!**/node_modules/**"]
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
