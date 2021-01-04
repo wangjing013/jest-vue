@@ -5,7 +5,12 @@
       <input
         class="input"
         data-test="header-input"
-        v-model="inputValue"
+        :value="inputValue"
+        @input="
+          (e) => {
+            changeInputValue(e.target.value)
+          }
+        "
         @keyup.enter="handlerEnter"
         placeholder="请输入代办事项"
       />
@@ -14,18 +19,18 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'Header',
-  data() {
-    return {
-      inputValue: ''
-    }
+  computed: {
+    ...mapState(['inputValue'])
   },
   methods: {
+    ...mapMutations(['changeInputValue']),
     handlerEnter() {
       if (this.inputValue) {
         this.$emit('add', this.inputValue)
-        this.inputValue = ''
+        this.changeInputValue('')
       }
     }
   }

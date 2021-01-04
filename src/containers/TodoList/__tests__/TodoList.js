@@ -2,13 +2,16 @@ import TodoList from '@/containers/TodoList/TodoList'
 import Header from '@/containers/TodoList/components/Header'
 import { findTestWarpper } from '@/utils/testUtils'
 import { mount } from '@vue/test-utils'
+import store from '@/store'
 it(`
   描述用户行为
   1. 在 header 中输入内容
   2. 按下回车键
   3. 内容新增成功 页面上能查看到对应元素
 `, async() => {
-  const warpper = mount(TodoList)
+  const warpper = mount(TodoList, {
+    store: store
+  })
   const header = warpper.findComponent(Header)
   const inputEle = header.find('input')
   const content = 'Wang Jing'
