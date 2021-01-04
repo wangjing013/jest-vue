@@ -4,8 +4,32 @@
       <label>代办列表:</label> <span data-test="count">{{ count }}</span>
     </div>
     <ul class="undo-list">
-      <li data-test="item" v-for="(item, index) of list" :key="index">
-        {{ item }}
+      <li
+        data-test="item"
+        v-for="(item, index) of list"
+        :key="index"
+        @click="
+          () => {
+            changeStatus(index)
+          }
+        "
+      >
+        <input
+          type="text"
+          v-if="item.status === 'input'"
+          data-test="input"
+          :value="item.value"
+          @click.prevent
+          @blur="resetStatus"
+          @change="
+            (event) => {
+              itemChange(index, event.target.value)
+            }
+          "
+        />
+        <template v-else>
+          {{ item.value }}
+        </template>
         <span
           data-test="delete-button"
           @click="
@@ -39,6 +63,18 @@ export default {
   methods: {
     handerDelete(index) {
       this.$emit('delete', index)
+    },
+    changeStatus(index) {
+      this.$emit('status', index)
+    },
+    resetStatus() {
+      this.$emit('reset')
+    },
+    itemChange(index, value) {
+      this.$emit('change', {
+        index,
+        value
+      })
     }
   }
 }
